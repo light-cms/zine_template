@@ -24,10 +24,8 @@ jobs:
       - name: cache mise dependencies
         uses: actions/cache@main
         with:
-          path: |
-            ~/.local/share/mise/installs
-            ~/.local/share/mise/cache
-          key: mise-${{ runner.os }}-${{ hashFiles('mise.toml') }}
+          path: /
+          key: mise-${{ runner.os }}
           restore-keys: |
             mise-${{ runner.os }}-
       - name: Install dependencies
