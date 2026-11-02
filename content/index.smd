@@ -1,0 +1,29 @@
+---
+.title = "Author writes",
+.date = .date("1990-01-01T00:00:00"),
+.authors = ["Author"],
+.layout = "index.shtml",
+.description = "A technical blog exploring the internet",
+.alternatives = [.{
+    .name = "rss-all",
+    .layout = "feed.xml",
+    .output = "rss.xml",
+}, .{
+    .name = "sitemap",
+    .layout = "sitemap.xml",
+    .output = "/sitemap.xml",
+    .type = "application/xml",
+}],
+---
+
+Welcome, I'm Author, a curious tinkerer who explores the digital landscape.
+I'm interested in Linux, technology, and various technical experiments.
+Here you can find technical content and observations.
+
+- Practical Linux guides and dotfiles.
+- Tauri and AppImage troubleshooting.
+- Container and bootc experiments.
+- Cloudflare deployment notes.
+
+Enjoy exploring the content and feel free to reach out!
+

@@ -1,0 +1,46 @@
+<extend template="footer.shtml">
+<main id="main-content">
+	<h1 :text="$page.title"></h1>
+	<div :html="$page.content()"></div>
+	<ctx alt="$page.alternative('rss-all')">
+		<p>
+			<a href="$ctx.alt.link()">RSS feed (all posts)</a>
+			|
+			<a href="$site.page('blog').alternative('rss').link()">Blog RSS</a>
+			|
+			<a href="$site.page('notes').alternative('rss').link()">Notes RSS</a>
+		</p>
+	</ctx>
+	<section id="latest-posts">
+		<h2>Latest Posts</h2>
+		<div id="article-list" :loop="$site.page('blog').subpages()">
+			<article class="h-entry">
+				<a href="$loop.it.link()"></a>
+				<h3>
+					<a class="u-url p-name" href="$loop.it.link()" :text="$loop.it.title"></a>
+				</h3>
+				<ctx :if="$loop.it.description.len().gt(0)">
+					<p class="p-summary" :text="$loop.it.description"></p>
+				</ctx>
+				<div class="details">
+					<small>
+						<time class="dt-published" datetime="$loop.it.date.format('2006-01-02')"
+							:text="$loop.it.date.format('January 02, 2006')"></time>
+					</small>
+				</div>
+			</article>
+		</div>
+	</section>
+	<section id="notes">
+		<h2>Notes</h2>
+		<ul :loop="$site.page('notes').subpages()">
+			<li>
+				<small>
+					<time datetime="$loop.it.date.format('2006-01-02')"
+						:text="$loop.it.date.format('January 02, 2006')"></time>
+				</small>
+				<a href="$loop.it.link()" :text="$loop.it.title"></a>
+			</li>
+		</ul>
+	</section>
+</main>

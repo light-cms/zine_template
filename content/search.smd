@@ -1,0 +1,12 @@
+---
+.title = "Search",
+.description = "Search all posts and notes on light cms writes",
+.date = .date("2026-05-28T17:31:00-04:00"),
+.authors = ["LightCms"],
+.layout = "search.shtml",
+.custom = {
+    "noindex": true,
+},
+---
+
+Search powered by [Pagefind]($link.url("https://pagefind.app/")).

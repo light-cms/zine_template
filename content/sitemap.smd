@@ -1,0 +1,9 @@
+---
+.title = "Sitemap",
+.date = .date("1990-01-01T00:00:00"),
+.layout = "sitemap.shtml",
+.description = "Overview and complete index of pages, blog posts, and notes by lightcms-template",
+---
+
+Sitemap of the entire site:
+

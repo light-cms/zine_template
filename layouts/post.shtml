@@ -1,0 +1,144 @@
+<extend template="footer.shtml">
+<main id="main-content">
+	<article itemscope itemtype="https://schema.org/BlogPosting" class="h-entry">
+		<div id="heading">
+			<p>
+				<small>
+					<time class="dt-published" datetime="$page.date.format('2006-01-02')" itemprop="datePublished">Published on
+						<span :text="$page.date.format('January 02, 2006')"></span>
+					</time>
+				</small>
+			</p>
+			<a class="p-author h-card u-url" href="$site.host_url" style="display:none" rel="author">LightCms</a>
+			<meta itemprop="author" content="LightCms">
+			<meta itemprop="publisher" content="LightCms">
+			<link itemprop="mainEntityOfPage" href="$site.host_url.addPath($page.link())">
+			<link class="u-url" href="$site.host_url.addPath($page.link())">
+			<meta itemprop="image" content="$site.host_url.addPath($site.asset('fanzine.webp').link())">
+			<h1 class="p-name" :text="$page.title" itemprop="headline"></h1>
+			<ctx :if="$page.tags.empty.not()">
+				<ul class="tags">
+					<li><span class="tag">tags:</span></li>
+					<ctx :loop="$page.tags">
+						<li><span class="tag" :text="$loop.it"></span></li>
+					</ctx>
+				</ul>
+			</ctx>
+		</div>
+
+		<div id="buttons-container">
+			<ctx :if="$page.custom.get?('toc')">
+				<details id="toc" class="closable">
+					<summary title="Table of Contents">
+						<i class="icon"></i>
+					</summary>
+					<div>
+						<strong class="title">Table of Contents</strong>
+						<div :html="$page.toc()"></div>
+					</div>
+				</details>
+			</ctx>
+			<a id="go-to-top" href="#top" title="Go to Top"><i class="icon"></i></a>
+			<a id="share"
+				href="$site.host_url.addPath($page.link()).prefix('https://shareopenly.org/share/?url=')"
+				rel="noopener noreferrer" title="Share"><i class="icon"></i></a>
+		</div>
+
+		<div class="e-content" itemprop="articleBody" :html="$page.content()"></div>
+	</article>
+
+	<nav id="post-nav">
+		<ctx :if="$page.prevPage?()">
+			<a class="post-nav-item post-nav-prev" href="$if.link()" title="$if.title">
+				<div class="nav-arrow">Previous</div>
+				<span class="post-title" :text="$if.title"></span>
+			</a>
+		</ctx>
+		<ctx :if="$page.nextPage?()">
+			<a class="post-nav-item post-nav-next" href="$if.link()" title="$if.title">
+				<div class="nav-arrow">Next</div>
+				<span class="post-title" :text="$if.title"></span>
+			</a>
+		</ctx>
+	</nav>
+
+	<script>
+		document.addEventListener('keydown', (e) => {
+			if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+			if (e.key === 'ArrowLeft') {
+				const a = document.querySelector('a.post-nav-prev');
+				if (a) window.location.href = a.href;
+			}
+			if (e.key === 'ArrowRight') {
+				const a = document.querySelector('a.post-nav-next');
+				if (a) window.location.href = a.href;
+			}
+		});
+	</script>
+
+	<div id="applause"></div>
+
+	<script type="module">
+		let initialized = false;
+		const root = document.getElementById("applause");
+
+		const observer = new IntersectionObserver(async ([entry]) => {
+			if (!entry.isIntersecting || initialized) return;
+			initialized = true;
+			observer.disconnect();
+			await import("https://unpkg.com/applause-button/dist/applause-button.js");
+			const button = document.createElement("applause-button");
+			button.setAttribute("color", "#d97706"); // amber
+			button.setAttribute("multiclap", "");
+			button.style.margin = "2rem auto";
+			button.style.display = "block";
+
+			root.appendChild(button);
+		});
+
+		observer.observe(root);
+	</script>
+
+	<div id="comments"></div>
+	<div id="newsletter"></div>
+	<script type="module" async>
+		let initialized = false;
+		const root = document.getElementById("comments");
+
+		const observer = new IntersectionObserver(async ([entry]) => {
+			if (!entry.isIntersecting || initialized) return;
+
+			initialized = true;
+			observer.disconnect();
+
+			const script = document.createElement("script");
+			script.src = "https://giscus.app/client.js";
+			script.async = true;
+			script.crossOrigin = "anonymous";
+
+			// Set all required Giscus data attributes
+			script.setAttribute("data-repo", "light-cms/blogs_md");
+			script.setAttribute("data-repo-id", "R_kgDOT8dZcw");
+			script.setAttribute("data-category", "Announcements");
+			script.setAttribute("data-category-id", "DIC_kwDOT8dZc84DHjwl");
+			script.setAttribute("data-mapping", "pathname");
+			script.setAttribute("data-strict", "0");
+			script.setAttribute("data-reactions-enabled", "1");
+			script.setAttribute("data-emit-metadata", "1");
+			script.setAttribute("data-input-position", "top");
+			script.setAttribute("data-theme", "gruvbox_dark");
+			script.setAttribute("data-lang", "en");
+			script.setAttribute("data-loading", "lazy");
+			script.setAttribute("crossorigin", "anonymous");
+
+			root.appendChild(script);
+		});
+
+		observer.observe(root);
+	</script>
+	<div class="center">
+		<a href="https://github.com/USERNAME/NEWSY/issues/1" target="_blank" rel="noopener noreferrer"
+			class="github-subscribe-btn">Subscribe
+			on GitHub</a>
+	</div>
+</main>

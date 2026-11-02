@@ -1,0 +1,23 @@
+---
+.title = "Contact",
+.description = "Contact author — how to reach me",
+.date = .date("2026-01-01T00:00:00"),
+.authors = ["LightCms"],
+.layout = "page.shtml",
+.draft = false,
+---
+
+Don't hesitate to drop a little message, I'm looking to learn alot from people.
+
+- [drop a message]($link.url("https://app.youform.com/forms/8kgi7jvm").new(true)): drop a message
+- [Email](mailto:example@admin.com): example@admin.com
+- [GitHub]($link.url("https://github.com/light-cms").new(true)): GitHub
+- [GitLab]($link.url("https://gitlab.com/light-cms").new(true)): GitLab
+- [Codeberg]($link.url("https://codeberg.org/light-cms").new(true)): Codeberg
+- [LinkedIn]($link.url("https://www.linkedin.com/in/light-cms").new(true)): LinkedIn
+- [Instagram]($link.url("https://www.instagram.com/example").new(true)): Instagram
+- [Facebook]($link.url("https://www.facebook.com/example").new(true)): Facebook
+- [Mastodon]($link.url("https://mastodon.social/@example").new(true)): Mastodon
+- [Twitter]($link.url("https://x.com/example").new(true)): Twitter
+- [Bluesky]($link.url("https://bsky.app/profile/example.bsky.social").new(true)): Bluesky
+- [Buy Me a Coffee]($link.url("https://buymeacoffee.com/Pratyay360").new(true)): Buy Me a Coffee

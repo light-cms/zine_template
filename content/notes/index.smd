@@ -1,0 +1,12 @@
+---
+.title = "Release Notes",
+.description = "Release notes and short notes by LightCms",
+.date = .date("1990-01-01T00:00:00"),
+.layout = "releasenotes.shtml",
+.alternatives = [.{
+    .name = "rss",
+    .layout = "releasenotes.xml",
+    .output = "releasenotes.xml",
+}],
+---
+

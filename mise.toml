@@ -1,0 +1,43 @@
+[tools]
+argc = "latest"
+"github:kristoff-it/ziggy" = "latest"
+"github:kristoff-it/zine" = "latest"
+"github:neurocyte/flow" = "latest"
+"github:projectuser/md2smd" = "1.6"
+"github:sass/dart-sass" = "latest"
+node = "24"
+"npm:surge" = "latest"
+superhtml = "latest"
+wrangler = { version = "latest", allow_builds = ["esbuild", "sharp", "workerd"] }
+
+[settings]
+experimental = true
+
+
+[tasks.fetch]
+run = "node scripts/fetch.js"
+description = "fetch the latest posts"
+
+[tasks.build]
+run = ["mise fetch", "zine release -f", "node scripts/fix-external-links.js", "npx -y pagefind --site public"]
+description = "build the site"
+
+[tasks.dev]
+run = "zine"
+description = "start the dev server"
+
+[tasks.deploy]
+run = "wrangler pages deploy public/ --project-name author"
+description = "deploy the site"
+
+
+# [tasks.deploy1]
+# run = "surge public/ publish project.online"
+# description = "deploy the site"
+
+
+# [tasks.deploy]
+# run = [
+#     "surge public/ publish project.online",
+# ]
+# description = "deploy the site"

@@ -1,0 +1,84 @@
+<extend template="footer.shtml">
+<main id="main-content">
+	<article itemscope itemtype="https://schema.org/WebPage">
+		<div id="heading">
+			<ctx :if="$page.custom.get?('subtitle')">
+				<p><small :text="$if"></small></p>
+			</ctx>
+			<p>
+				<small>
+					<time datetime="$page.date.format('2006-01-02')" itemprop="datePublished">
+						<span :text="$page.date.format('January 02, 2006')"></span>
+					</time>
+				</small>
+			</p>
+			<h1 :text="$page.title" itemprop="headline"></h1>
+			<ctx :if="$page.tags.empty.not()">
+				<ul class="tags">
+					<li><span class="tag">tags:</span></li>
+					<ctx :loop="$page.tags">
+						<li><span class="tag" :text="$loop.it"></span></li>
+					</ctx>
+				</ul>
+			</ctx>
+		</div>
+
+		<div id="buttons-container">
+			<ctx :if="$page.custom.get?('toc')">
+				<details id="toc" class="closable">
+					<summary title="Table of Contents">
+						<i class="icon"></i>
+					</summary>
+					<div>
+						<strong class="title">Table of Contents</strong>
+						<div :html="$page.toc()"></div>
+					</div>
+				</details>
+			</ctx>
+			<a id="go-to-top" href="#top" title="Go to Top"><i class="icon"></i></a>
+		</div>
+
+		<div class="post" itemprop="text" :html="$page.content()"></div>
+	</article>
+
+	<ctx :if="$page.footnotes?()">
+		<ol :loop="$if">
+			<li id="$loop.it.def_id">
+				<ctx :html="$loop.it.html()"></ctx>
+				<ctx :loop="$loop.it.ref_ids">
+					<a href="$loop.it.prefix('#')">⤴</a>
+				</ctx>
+			</li>
+		</ol>
+	</ctx>
+
+	<ctx :if="$page.parentSection().link().eql('/').not()">
+		<nav id="post-nav">
+			<ctx :if="$page.prevPage?()">
+				<a class="post-nav-item post-nav-prev" href="$if.link()" title="$if.title">
+					<div class="nav-arrow">Previous</div>
+					<span class="post-title" :text="$if.title"></span>
+				</a>
+			</ctx>
+			<ctx :if="$page.nextPage?()">
+				<a class="post-nav-item post-nav-next" href="$if.link()" title="$if.title">
+					<div class="nav-arrow">Next</div>
+					<span class="post-title" :text="$if.title"></span>
+				</a>
+			</ctx>
+		</nav>
+		<script>
+			document.addEventListener('keydown', (e) => {
+				if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+				if (e.key === 'ArrowLeft') {
+					const a = document.querySelector('a.post-nav-prev');
+					if (a) window.location.href = a.href;
+				}
+				if (e.key === 'ArrowRight') {
+					const a = document.querySelector('a.post-nav-next');
+					if (a) window.location.href = a.href;
+				}
+			});
+		</script>
+	</ctx>
+</main>

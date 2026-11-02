@@ -1,0 +1,12 @@
+# Author writes
+
+> The blog of a hobbyist navigating the seas of the internet.
+
+LightCms writes about Linux, dotfiles, Tauri, containers, bootc, Cloudflare, and developer tooling.
+
+## Links
+- Home: 
+- Blog: https://light-cms.github.io/blog/
+- Notes: https://light-cms.github.io/notes/
+- Devlog: https://light-cms.github.io/devlog/
+- RSS: https://light-cms.github.io/rss.xml
