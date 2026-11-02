@@ -1,11 +1,13 @@
 [tools]
 argc = "latest"
+bun = "latest"
 "github:kristoff-it/ziggy" = "latest"
 "github:kristoff-it/zine" = "latest"
 "github:neurocyte/flow" = "latest"
-"github:projectuser/md2smd" = "1.6"
+"github:pratyay360/md2smd" = "1.6"
 "github:sass/dart-sass" = "latest"
 node = "24"
+"npm:pagefind" = "latest"
 "npm:surge" = "latest"
 superhtml = "latest"
 wrangler = { version = "latest", allow_builds = ["esbuild", "sharp", "workerd"] }
@@ -19,16 +21,16 @@ run = "node scripts/fetch.js"
 description = "fetch the latest posts"
 
 [tasks.build]
-run = ["mise fetch", "zine release -f", "node scripts/fix-external-links.js", "npx -y pagefind --site public"]
+run = ["mise fetch", "zine release -f", "bun scripts/fix-external-links.js", "bun x pagefind --site public"]
 description = "build the site"
 
 [tasks.dev]
 run = "zine"
 description = "start the dev server"
 
-[tasks.deploy]
-run = "wrangler pages deploy public/ --project-name author"
-description = "deploy the site"
+# [tasks.deploy]
+# run = "wrangler pages deploy public/ --project-name author"
+# description = "deploy the site"
 
 
 # [tasks.deploy1]
