@@ -24,7 +24,7 @@ jobs:
       - name: cache mise dependencies
         uses: actions/cache@main
         with:
-          path: $HOME/
+          path: /home/runner
           key: mise-${{ runner.os }}
           restore-keys: |
             mise-${{ runner.os }}
