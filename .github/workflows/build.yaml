@@ -24,10 +24,10 @@ jobs:
       - name: cache mise dependencies
         uses: actions/cache@main
         with:
-          path: /
+          path: $HOME/
           key: mise-${{ runner.os }}
           restore-keys: |
-            mise-${{ runner.os }}-
+            mise-${{ runner.os }}
       - name: Install dependencies
         run: |
             mise trust
